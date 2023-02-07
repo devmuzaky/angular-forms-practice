@@ -2,19 +2,44 @@
   <mat-card-title>Login</mat-card-title>
   <mat-card-content>
 
-    <form class="login-form data-form" #loginForm="ngForm">
+    <form class="login-form data-form" #loginForm="ngForm" (ngSubmit)="login(loginForm, $event)">
 
       <mat-form-field>
-        <input matInput type="email" name="email" placeholder="Email">
+        <input matInput ngModel #email="ngModel" type="email" name="email"
+               [ngModelOptions]="{updateOn: 'blur', name: 'email'}"
+               (ngModelChange)="onEmailChange($event)"
+               placeholder="Email" required
+               email minlength="3" maxlength="20">
       </mat-form-field>
 
+      <mat-error *ngIf="email.invalid && (email.dirty || email.touched)">
+        Email is required
+      </mat-error>
+      <mat-error *ngIf="email.errors?.minlength">
+        Email must be at least 3 characters long
+      </mat-error>
       <mat-form-field>
-        <input matInput type="password" placeholder="Password">
+        <input
+          matInput
+          ngModel
+          #password="ngModel"
+          type="password"
+          placeholder="Password"
+          name="password"
+          required
+        >
       </mat-form-field>
 
-      <button mat-raised-button color="primary" (click)="login(loginForm)">Login</button>
+      <mat-error *ngIf="password.invalid && (password.dirty || password.touched)">
+        <div *ngIf="password.errors.required">Password is required</div>
+      </mat-error>
+
+      <button [disabled]="!loginForm.valid" mat-raised-button color="primary" type="submit" >Login</button>
+
 
     </form>
+
+
 
   </mat-card-content>
 
