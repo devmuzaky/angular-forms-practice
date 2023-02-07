@@ -6,41 +6,60 @@
 
       <mat-form-field>
         <input matInput ngModel #email="ngModel" type="email" name="email"
-               [ngModelOptions]="{updateOn: 'blur', name: 'email'}"
-               (ngModelChange)="onEmailChange($event)"
                placeholder="Email" required
                email minlength="3" maxlength="20">
+
+        <mat-error *ngIf="email.errors?.required">
+          Email is mandatory
+        </mat-error>
+        <mat-error *ngIf="email.errors?.minlength">
+          Email must be at least 3 characters long
+        </mat-error>
+
       </mat-form-field>
 
-      <mat-error *ngIf="email.invalid && (email.dirty || email.touched)">
-        Email is required
-      </mat-error>
-      <mat-error *ngIf="email.errors?.minlength">
-        Email must be at least 3 characters long
-      </mat-error>
+
       <mat-form-field>
         <input
           matInput
           ngModel
+          passwordStrength
           #password="ngModel"
           type="password"
           placeholder="Password"
           name="password"
+          [minlength]="8"
           required
         >
+
+        <mat-error *ngIf="password.errors?.required">
+          Password is mandatory
+        </mat-error>
+
       </mat-form-field>
 
-      <mat-error *ngIf="password.invalid && (password.dirty || password.touched)">
-        <div *ngIf="password.errors.required">Password is required</div>
-      </mat-error>
+      <ng-container *ngIf="password.errors |
+        onlyOneError:['required', 'minlength', 'passwordStrength'] as error">
 
-      <button [disabled]="!loginForm.valid" mat-raised-button color="primary" type="submit" >Login</button>
+        <mat-error class="field-message" *ngIf="error?.minlength">
+          Email must be at least 3 characters long
+        </mat-error>
 
+        <mat-error class="field-message" *ngIf="error?.passwordStrength">
+          Password must contain at least one uppercase letter, one lowercase letter, one number and one special
+          character
+        </mat-error>
+
+      </ng-container>
+
+
+      <button mat-raised-button
+              color="primary"
+              type="submit"
+              [disabled]="!loginForm.valid">Login
+      </button>
 
     </form>
-
-
-
   </mat-card-content>
 
 </mat-card>
