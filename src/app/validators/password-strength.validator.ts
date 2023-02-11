@@ -1,18 +1,18 @@
-import {AbstractControl, ValidatorFn} from "@angular/forms";
+import {AbstractControl, ValidationErrors, ValidatorFn} from "@angular/forms";
 
+export function createPasswordStrengthValidator(): ValidatorFn {
+  return (control: AbstractControl): ValidationErrors | null => {
 
-export function createPasswordStrengthValidator(): ValidatorFn | null {
-  return (control: AbstractControl): { [key: string]: any } => {
     const password = control.value;
-    if (password) {
-      const hasNumber = /\d/.test(password);
-      const hasUpper = /[A-Z]/.test(password);
-      const hasLower = /[a-z]/.test(password);
-      const hasNonAlphas = /\W/.test(password);
-      const valid = hasNumber && hasUpper && hasLower && hasNonAlphas;
-      return valid ? null : {passwordStrength: true};
-    }
-    return null;
-  };
 
+    if (!password) return null;
+
+    const hasUpperCase = /[A-Z]/.test(password);
+    const hasLowerCase = /[a-z]/.test(password);
+    const hasNumeric = /[0-9]/.test(password);
+
+    const passwordValid = hasUpperCase && hasLowerCase && hasNumeric;
+
+    return !passwordValid ? {passwordStrength: true} : null;
+  }
 }
