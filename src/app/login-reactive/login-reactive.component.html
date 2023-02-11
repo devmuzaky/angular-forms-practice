@@ -2,26 +2,70 @@
   <mat-card-title>Login (Reactive)</mat-card-title>
   <mat-card-content>
 
-    <form class="login-form data-form">
+    <form class="login-form data-form" [formGroup]="form">
 
       <mat-form-field>
 
-        <input matInput type="email" name="email"
-               placeholder="Email">
+        <input matInput
+               type="email"
+               name="email"
+               placeholder="Email"
+               formControlName="email">
+
+        <mat-error *ngIf="email.errors?.required">Email is mandatory.</mat-error>
+
+        <mat-error *ngIf="email.errors?.minlength">
+          Your email must have at least {{email.errors?.minlength.requiredLength}} characters.
+          but you have only {{email.errors?.minlength.actualLength}}.
+        </mat-error>
+
+        <mat-error *ngIf="email.errors?.email">
+          Your email is not valid.
+        </mat-error>
+
 
       </mat-form-field>
 
       <mat-form-field>
 
-        <input matInput type="password" placeholder="Password">
+        <input matInput
+               type="password"
+               placeholder="Password"
+               formControlName="password">
+
+        <mat-error *ngIf="password.errors?.required">Password is mandatory</mat-error>
+
 
       </mat-form-field>
 
-      <button mat-raised-button color="primary">
+      <ng-container *ngIf="password.errors |
+        onlyOneError:['required', 'minlength', 'passwordStrength'] as error">
+
+        <div class="field-message" *ngIf="error?.minlength">your password must have at
+          least {{error.minlength.requiredLength}} characters.
+          but you have only {{error.minlength.actualLength}}.
+        </div>
+
+        <div class="field-message" *ngIf="error?.passwordStrength">Your password must have at least one uppercase
+          letter, one lowercase letter, one number and one special
+          character.
+        </div>
+
+      </ng-container>
+
+      <button mat-raised-button color="primary" [disabled]="!form.valid">
         Login
       </button>
 
     </form>
+
+    <div class="form-val">
+      {{form.value | json}}
+    </div>
+
+    <div class="form-val">
+      {{form.valid}}
+    </div>
 
   </mat-card-content>
 </mat-card>
