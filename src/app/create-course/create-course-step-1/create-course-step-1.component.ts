@@ -21,7 +21,7 @@ export class CreateCourseStep1Component implements OnInit {
     title: ['', {
       validators: [
         Validators.required,
-        Validators.minLength(5),
+        Validators.minLength(3),
         Validators.maxLength(60),
       ],
       asyncValidators: [courseTitleValidator(this.coursesService)],
@@ -30,7 +30,7 @@ export class CreateCourseStep1Component implements OnInit {
     releasedAt: [new Date(), Validators.required],
     category: ['BEGINNER', Validators.required],
     downloadsAllowed: [false, Validators.required],
-    longDescription: ['', [Validators.required, Validators.minLength(20), Validators.maxLength(200)]]
+    longDescription: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(200)]]
   });
 
   courseCategories$: Observable<CourseCategory[]>;
