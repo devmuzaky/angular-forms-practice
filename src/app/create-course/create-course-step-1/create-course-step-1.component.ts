@@ -19,7 +19,10 @@ export class CreateCourseStep1Component implements OnInit {
       ],
       asyncValidators: [courseTitleValidator(this.coursesService)],
       updateOn: 'blur'
-    }]
+    }],
+    releasedAt: [new Date(), Validators.required],
+    downloadsAllowed: [false, Validators.required],
+    longDescription: ['', [Validators.required, Validators.minLength(20), Validators.maxLength(200)]]
   });
 
 

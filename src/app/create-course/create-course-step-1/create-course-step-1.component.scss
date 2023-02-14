@@ -4,6 +4,6 @@ mat-form-field {
   display: block;
 }
 
-textarea {
+::ng-deep.textarea {
   max-height: 20px;
 }
