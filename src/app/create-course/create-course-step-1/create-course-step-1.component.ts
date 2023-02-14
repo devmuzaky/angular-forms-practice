@@ -2,6 +2,13 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 import {courseTitleValidator} from "../../validators/course-title.validators";
 import {CoursesService} from "../../services/courses.service";
+import {Observable} from "rxjs";
+
+
+interface CourseCategory {
+  code: string;
+  description: string
+}
 
 @Component({
   selector: 'create-course-step-1',
@@ -12,7 +19,7 @@ export class CreateCourseStep1Component implements OnInit {
 
   form = this.fb.group({
     title: ['', {
-      Validators: [
+      validators: [
         Validators.required,
         Validators.minLength(5),
         Validators.maxLength(60),
@@ -21,9 +28,12 @@ export class CreateCourseStep1Component implements OnInit {
       updateOn: 'blur'
     }],
     releasedAt: [new Date(), Validators.required],
+    category: ['BEGINNER', Validators.required],
     downloadsAllowed: [false, Validators.required],
     longDescription: ['', [Validators.required, Validators.minLength(20), Validators.maxLength(200)]]
   });
+
+  courseCategories$: Observable<CourseCategory[]>;
 
 
   constructor(private fb: FormBuilder, private coursesService: CoursesService) {
@@ -34,7 +44,7 @@ export class CreateCourseStep1Component implements OnInit {
   }
 
   ngOnInit() {
-
+    this.courseCategories$ = this.coursesService.findCourseCategories();
   }
 
 }

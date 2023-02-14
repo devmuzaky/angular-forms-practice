@@ -1,6 +1,7 @@
 <div [formGroup]="form">
   <mat-form-field>
-    <input matInput placeholder="Course title" formControlName="title" #title>
+    <mat-label>Course title</mat-label>
+    <input matInput formControlName="title" #title>
     <mat-hint align="end">
       {{title.value.length}} / 60
     </mat-hint>
@@ -8,7 +9,24 @@
   </mat-form-field>
 
   <mat-form-field>
-    <input matInput [matDatepicker]="releaseDatePicker" formControlName="releasedAt" placeholder="Release date">
+
+    <mat-label>Select category</mat-label>
+
+    <mat-select formControlName="category">
+
+      <ng-container *ngFor="let category of (courseCategories$ | async)">
+
+        <mat-option [value]="category.code"> {{category.description}} </mat-option>
+
+      </ng-container>
+
+    </mat-select>
+
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Release date</mat-label>
+    <input matInput [matDatepicker]="releaseDatePicker" formControlName="releasedAt">
 
     <mat-datepicker-toggle matSuffix [for]="releaseDatePicker"></mat-datepicker-toggle>
     <mat-datepicker #releaseDatePicker></mat-datepicker>
@@ -19,7 +37,8 @@
   </mat-checkbox>
 
   <mat-form-field appearance="outline">
-    <textarea matInput formControlName="longDescription" placeholder="Description..."></textarea>
+    <mat-label>Description</mat-label>
+    <textarea matInput formControlName="longDescription"></textarea>
   </mat-form-field>
 
 </div>
