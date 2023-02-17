@@ -1,17 +1,17 @@
 export const COURSES: any = {
 
- 19: {
-   id: 19,
-   description: 'Angular Forms In Depth',
-   longDescription: 'Build complex enterprise data forms with the powerful Angular Forms module',
-   iconUrl: 'https://angular-university.s3-us-west-1.amazonaws.com/course-images/angular-forms-course-small.jpg',
-   courseListIcon: 'https://angular-academy.s3.amazonaws.com/main-logo/main-page-logo-small-hat.png',
-   category: 'BEGINNER',
-   lessonsCount: 10,
-   seqNo: 0,
-   url: 'angular-forms-course',
-   price: 50
- },
+  19: {
+    id: 19,
+    description: 'Angular Forms In Depth',
+    longDescription: 'Build complex enterprise data forms with the powerful Angular Forms module',
+    iconUrl: 'https://angular-university.s3-us-west-1.amazonaws.com/course-images/angular-forms-course-small.jpg',
+    courseListIcon: 'https://angular-academy.s3.amazonaws.com/main-logo/main-page-logo-small-hat.png',
+    category: 'BEGINNER',
+    lessonsCount: 10,
+    seqNo: 0,
+    url: 'angular-forms-course',
+    price: 50
+  },
 
 
   18: {
@@ -899,7 +899,6 @@ export const LESSONS = {
   },
 
 
-
   // Angular Router Course
   90: {
     id: 90,
@@ -1081,7 +1080,6 @@ export const LESSONS = {
     courseId: 18,
     videoId: '0Qsg8fyKwO4'
   }
-
 
 
 };

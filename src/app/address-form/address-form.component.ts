@@ -1,14 +1,5 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
-import {
-  AbstractControl,
-  ControlValueAccessor,
-  FormBuilder, FormGroup,
-  NG_VALIDATORS,
-  NG_VALUE_ACCESSOR,
-  Validator,
-  Validators
-} from '@angular/forms';
-import {noop, Subscription} from 'rxjs';
+import {Component, Input} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'address-form',
@@ -17,18 +8,18 @@ import {noop, Subscription} from 'rxjs';
 })
 export class AddressFormComponent {
 
-    @Input()
-    legend:string;
+  @Input()
+  legend: string;
 
-    form: FormGroup = this.fb.group({
-        addressLine1: [null, [Validators.required]],
-        addressLine2: [null, [Validators.required]],
-        zipCode: [null, [Validators.required]],
-        city: [null, [Validators.required]]
-    });
+  form: FormGroup = this.fb.group({
+    addressLine1: [null, [Validators.required]],
+    addressLine2: [null, [Validators.required]],
+    zipCode: [null, [Validators.required]],
+    city: [null, [Validators.required]]
+  });
 
-    constructor(private fb: FormBuilder) {
-    }
+  constructor(private fb: FormBuilder) {
+  }
 
 }
 

@@ -1,5 +1,4 @@
 
-
 .login-page {
   max-width: 350px;
   margin: 50px auto 0 auto;
@@ -15,7 +14,7 @@
   margin-bottom: 10px;
 }
 
-.form-val{
+.form-val {
   color: red;
   font-size: 12px;
   margin-bottom: 10px;

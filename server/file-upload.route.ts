@@ -1,8 +1,7 @@
-
 import {Request, Response} from 'express';
 
 
-export function onFileupload(req:Request, res: Response) {
+export function onFileupload(req: Request, res: Response) {
 
   let file = req['files'].thumbnail;
 
@@ -11,7 +10,6 @@ export function onFileupload(req:Request, res: Response) {
   setTimeout(() => {
     res.status(200).json({message: 'File uploaded successfully.'});
   }, 2000)
-
 
 
 }

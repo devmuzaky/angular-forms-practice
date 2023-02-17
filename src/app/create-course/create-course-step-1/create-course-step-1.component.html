@@ -1,7 +1,7 @@
 <div [formGroup]="form">
   <mat-form-field>
     <mat-label>Course title</mat-label>
-    <input matInput formControlName="title" #title>
+    <input #title formControlName="title" matInput>
     <mat-hint align="end">
       {{title.value.length}} / 60
     </mat-hint>
@@ -26,9 +26,9 @@
 
   <mat-form-field>
     <mat-label>Release date</mat-label>
-    <input matInput [matDatepicker]="releaseDatePicker" formControlName="releasedAt">
+    <input [matDatepicker]="releaseDatePicker" formControlName="releasedAt" matInput>
 
-    <mat-datepicker-toggle matSuffix [for]="releaseDatePicker"></mat-datepicker-toggle>
+    <mat-datepicker-toggle [for]="releaseDatePicker" matSuffix></mat-datepicker-toggle>
     <mat-datepicker #releaseDatePicker></mat-datepicker>
   </mat-form-field>
 
@@ -38,7 +38,7 @@
 
   <mat-form-field appearance="outline">
     <mat-label>Description</mat-label>
-    <textarea matInput formControlName="longDescription"></textarea>
+    <textarea formControlName="longDescription" matInput></textarea>
   </mat-form-field>
 
 </div>

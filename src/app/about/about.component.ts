@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'about',
@@ -7,7 +7,8 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 })
 export class AboutComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }

@@ -2,12 +2,12 @@
   <mat-card-title>Login (Template Driven)</mat-card-title>
   <mat-card-content>
 
-    <form class="login-form data-form" #loginForm="ngForm" (ngSubmit)="login(loginForm, $event)">
+    <form #loginForm="ngForm" (ngSubmit)="login(loginForm, $event)" class="login-form data-form">
 
       <mat-form-field>
-        <input matInput ngModel #email="ngModel" type="email" name="email"
-               placeholder="Email" required
-               email minlength="3" maxlength="20">
+        <input #email="ngModel" email matInput maxlength="20" minlength="3"
+               name="email" ngModel
+               placeholder="Email" required type="email">
 
         <mat-error *ngIf="email.errors?.required">
           Email is mandatory
@@ -21,15 +21,15 @@
 
       <mat-form-field>
         <input
+          #password="ngModel"
+          [minlength]="8"
           matInput
+          name="password"
           ngModel
           passwordStrength
-          #password="ngModel"
-          type="password"
           placeholder="Password"
-          name="password"
-          [minlength]="8"
           required
+          type="password"
         >
 
         <mat-error *ngIf="password.errors?.required">
@@ -41,11 +41,11 @@
       <ng-container *ngIf="password.errors |
         onlyOneError:['required', 'minlength', 'passwordStrength'] as error">
 
-        <mat-error class="field-message" *ngIf="error?.minlength">
+        <mat-error *ngIf="error?.minlength" class="field-message">
           Password must be at least 3 characters long
         </mat-error>
 
-        <mat-error class="field-message" *ngIf="error?.passwordStrength">
+        <mat-error *ngIf="error?.passwordStrength" class="field-message">
           Password must contain at least one uppercase letter, one lowercase letter, one number and one special
           character
         </mat-error>
@@ -53,10 +53,10 @@
       </ng-container>
 
 
-      <button mat-raised-button
+      <button [disabled]="!loginForm.valid"
               color="primary"
-              type="submit"
-              [disabled]="!loginForm.valid">Login
+              mat-raised-button
+              type="submit">Login
       </button>
 
     </form>

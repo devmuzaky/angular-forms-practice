@@ -1,18 +1,18 @@
 
 >>> body {
-    margin: 0;
+  margin: 0;
 }
 
 main {
-    margin: 30px;
+  margin: 30px;
 }
 
 mat-toolbar {
-    position: fixed;
-    z-index: 1000;
+  position: fixed;
+  z-index: 1000;
 
 }
 
 .main-content {
-    margin-top: 80px;
+  margin-top: 80px;
 }

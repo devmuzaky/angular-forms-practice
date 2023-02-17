@@ -1,45 +1,45 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Course} from "../model/course";
-import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
+import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 import {CourseDialogComponent} from "../course-dialog/course-dialog.component";
 
 @Component({
-    selector: 'courses-card-list',
-    templateUrl: './courses-card-list.component.html',
-    styleUrls: ['./courses-card-list.component.css']
+  selector: 'courses-card-list',
+  templateUrl: './courses-card-list.component.html',
+  styleUrls: ['./courses-card-list.component.css']
 })
 export class CoursesCardListComponent implements OnInit {
 
-    @Input()
-    courses: Course[];
+  @Input()
+  courses: Course[];
 
-    constructor(private dialog: MatDialog) {
-    }
+  constructor(private dialog: MatDialog) {
+  }
 
-    ngOnInit() {
+  ngOnInit() {
 
-    }
+  }
 
-    editCourse({description, longDescription, category}:Course) {
+  editCourse({description, longDescription, category}: Course) {
 
-        const dialogConfig = new MatDialogConfig();
+    const dialogConfig = new MatDialogConfig();
 
-        dialogConfig.disableClose = true;
-        dialogConfig.autoFocus = true;
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
 
-        dialogConfig.data = {
-            description, longDescription, category
-        };
+    dialogConfig.data = {
+      description, longDescription, category
+    };
 
-        const dialogRef = this.dialog.open(CourseDialogComponent,
-            dialogConfig);
+    const dialogRef = this.dialog.open(CourseDialogComponent,
+      dialogConfig);
 
 
-        dialogRef.afterClosed().subscribe(
-            val => console.log("Dialog output:", val)
-        );
+    dialogRef.afterClosed().subscribe(
+      val => console.log("Dialog output:", val)
+    );
 
-    }
+  }
 
 }
 

@@ -2,15 +2,15 @@
   <mat-card-title>Login (Reactive)</mat-card-title>
   <mat-card-content>
 
-    <form class="login-form data-form" [formGroup]="form">
+    <form [formGroup]="form" class="login-form data-form">
 
       <mat-form-field>
 
-        <input matInput
-               type="email"
+        <input formControlName="email"
+               matInput
                name="email"
                placeholder="Email"
-               formControlName="email">
+               type="email">
 
         <mat-error *ngIf="email.errors?.required">Email is mandatory.</mat-error>
 
@@ -28,10 +28,10 @@
 
       <mat-form-field>
 
-        <input matInput
-               type="password"
+        <input formControlName="password"
+               matInput
                placeholder="Password"
-               formControlName="password">
+               type="password">
 
         <mat-error *ngIf="password.errors?.required">Password is mandatory</mat-error>
 
@@ -41,19 +41,19 @@
       <ng-container *ngIf="password.errors |
         onlyOneError:['required', 'minlength', 'passwordStrength'] as error">
 
-        <div class="field-message" *ngIf="error?.minlength">your password must have at
+        <div *ngIf="error?.minlength" class="field-message">your password must have at
           least {{error.minlength.requiredLength}} characters.
           but you have only {{error.minlength.actualLength}}.
         </div>
 
-        <div class="field-message" *ngIf="error?.passwordStrength">Your password must have at least one uppercase
+        <div *ngIf="error?.passwordStrength" class="field-message">Your password must have at least one uppercase
           letter, one lowercase letter, one number and one special
           character.
         </div>
 
       </ng-container>
 
-      <button mat-raised-button color="primary" [disabled]="!form.valid">
+      <button [disabled]="!form.valid" color="primary" mat-raised-button>
         Login
       </button>
 

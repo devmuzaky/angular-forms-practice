@@ -57,4 +57,6 @@ export class CreateCourseStep1Component implements OnInit {
       .pipe(filter(() => this.form.valid))
       .subscribe(value => localStorage.setItem('STEP_1', JSON.stringify(value)));
   }
+
+
 }

@@ -12,21 +12,21 @@ export class CreateCourseStep2Component implements OnInit {
 
 
   form = this.fb.group({
-    courseType: ['premium', Validators.required],
-    price: [null, [
-      Validators.required,
-      Validators.min(1),
-      Validators.max(9999),
-      Validators.pattern('[0-9]+')
-    ]],
-    promoStartAt: [null],
-    promoEndAt: [null]
-  },{
-    validators: [createPromoRangeValidator()],
-    updateOn: 'blur'
+      courseType: ['premium', Validators.required],
+      price: [null, [
+        Validators.required,
+        Validators.min(1),
+        Validators.max(9999),
+        Validators.pattern('[0-9]+')
+      ]],
+      fileUpload: [null, Validators.required],
+      promoStartAt: [null],
+      promoEndAt: [null]
+    }, {
+      validators: [createPromoRangeValidator()],
+      updateOn: 'blur'
     }
-
-    );
+  );
 
   constructor(private fb: FormBuilder) {
   }
