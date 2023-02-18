@@ -1,8 +1,4 @@
 <div [formGroup]="form">
-
-  <address-form legend="Address" formControlName="address" ></address-form>
-
-
   <mat-form-field>
     <mat-label>Course title</mat-label>
     <input #title formControlName="title" matInput>
@@ -11,42 +7,29 @@
     </mat-hint>
     <mat-error *ngIf="courseTitle.errors?.titleExists">This title is already being used.</mat-error>
   </mat-form-field>
-
   <mat-form-field>
-
     <mat-label>Select category</mat-label>
-
     <mat-select formControlName="category">
-
       <ng-container *ngFor="let category of (courseCategories$ | async)">
-
         <mat-option [value]="category.code"> {{category.description}} </mat-option>
-
       </ng-container>
-
     </mat-select>
-
   </mat-form-field>
-
   <mat-form-field>
     <mat-label>Release date</mat-label>
     <input [matDatepicker]="releaseDatePicker" formControlName="releasedAt" matInput>
-
     <mat-datepicker-toggle [for]="releaseDatePicker" matSuffix></mat-datepicker-toggle>
     <mat-datepicker #releaseDatePicker></mat-datepicker>
   </mat-form-field>
-
   <mat-checkbox color="primary" formControlName="downloadsAllowed">
     Downloads Allowed?
   </mat-checkbox>
-
   <mat-form-field appearance="outline">
     <mat-label>Description</mat-label>
     <textarea formControlName="longDescription" matInput></textarea>
   </mat-form-field>
-
+  <address-form legend="Address" formControlName="address"></address-form>
 </div>
-
-<div class="form-val">
-  {{form.value | json}}
-</div>
+<!--<div class="form-val">-->
+<!--  {{form.value | json}}-->
+<!--</div>-->

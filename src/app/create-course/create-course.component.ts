@@ -17,4 +17,9 @@ export class CreateCourseComponent implements OnInit {
 
   }
 
+  submit(step1, step2, step3) {
+    console.log(step1, step2, step3);
+  }
+
+
 }

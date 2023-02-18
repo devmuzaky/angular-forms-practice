@@ -3,49 +3,37 @@
   <legend>{{legend}}</legend>
 
   <mat-form-field>
-
     <input formControlName="addressLine1"
            matInput
-           placeholder="Address Line 1"
-
-    >
-
+           placeholder="Address Line 1">
   </mat-form-field>
 
   <mat-form-field>
-
     <input formControlName="addressLine2"
            matInput
            placeholder="Address Line 2" (blur)="onTouched()">
-
   </mat-form-field>
 
   <mat-form-field>
-
     <input formControlName="zipCode"
            matInput
            placeholder="Zip Code" (blur)="onTouched()">
-
   </mat-form-field>
 
   <mat-form-field>
-
     <input formControlName="city"
            matInput
            placeholder="City" (blur)="onTouched()">
-
   </mat-form-field>
 
-  <div class="form-val">
+<!--  <div class="form-val">-->
+<!--    {{form.value | json}}-->
+<!--  </div>-->
 
-    {{form.value | json}}
+  <!--  <div class="form-val">-->
 
-  </div>
+  <!--    {{form.valid | json}}-->
 
-  <div class="form-val">
-
-    {{form.valid | json}}
-
-  </div>
+  <!--  </div>-->
 
 </fieldset>
